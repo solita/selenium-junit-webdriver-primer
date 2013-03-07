@@ -39,11 +39,11 @@ public class TC01AvoimetTyopaikatExists {
     }
 
     private WebElement getUra() {
-        return driver.findElement(By.linkText("Ura"));
+        return driver.findElement(By.xpath("//a[contains(text(),'Ura')]"));
     }
 
     private void openFrontPage() {
-        driver.get(baseUrl + "/");
+        driver.get(baseUrl);
     }
 
     @After
