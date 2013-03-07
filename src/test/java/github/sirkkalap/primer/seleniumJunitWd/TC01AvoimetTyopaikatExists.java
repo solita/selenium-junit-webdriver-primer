@@ -24,15 +24,30 @@ public class TC01AvoimetTyopaikatExists {
 
     @Test
     public void testTC01AvoimetTyopaikatExists() throws Exception {
-        driver.get(baseUrl + "/");
-        driver.findElement(By.linkText("Ura")).click();
-        driver.findElement(By.linkText("avoimet työpaikkamme!")).click();
-        // Warning: verifyTextPresent may require manual changes
+        openFrontPage();
+        getUra().click();
+        getLinkAvoimetTyopaikkamme().click();
+        verifyTextPresentAvoimetTyopaikat();
+    }
+
+    private void verifyTextPresentAvoimetTyopaikat() {
         try {
             assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Avoimet työpaikat[\\s\\S]*$"));
         } catch (Error e) {
             verificationErrors.append(e.toString());
         }
+    }
+
+    private WebElement getLinkAvoimetTyopaikkamme() {
+        return driver.findElement(By.linkText("avoimet työpaikkamme!"));
+    }
+
+    private WebElement getUra() {
+        return driver.findElement(By.linkText("Ura"));
+    }
+
+    private void openFrontPage() {
+        driver.get(baseUrl + "/");
     }
 
     @After
